@@ -1,0 +1,61 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div ng-controller="AuthenticationCtrl">
+      <button type="submit" ng-click="login()" ng-hide="authenticated">Login using Github</button>
+      <span ng-show="authenticated">Hello {{user.name}}</span>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div ng-controller="BooksCtrl" ng-show="authenticated">
+      <div id="my-library" ng-hide="search">
+        <h2>
+          My library
+          <button type="button" class="btn btn-default btn-sm" ng-click="searchBook()">
+            <span class="glyphicon glyphicon-plus"></span> Add book
+          </button>
+        </h2>
+
+        <table class="table table-condensed">
+          <thead>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Published</th>
+          </thead>
+          <tr ng-repeat="book in myBooks">
+            <td>{{book.item.volumeInfo.title}}</td>
+            <td>{{book.item.volumeInfo.authors.join(', ')}}</td>
+            <td>{{book.item.volumeInfo.publishedDate}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div id="search-book" ng-show="search">
+        <h2>Search a book</h2>
+        <input type="text" ng-model="q"/>
+        <button type="button" class="btn btn-default btn-sm" ng-click="submitSearch()">Search</button>
+        <button type="button" class="btn btn-default btn-sm" ng-click="cancel()">Cancel</button>
+
+        <div ng-show="availableBooks">
+          <table class="table table-condensed">
+            <thead>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Published</th>
+              <th></th>
+            </thead>
+            <tr ng-repeat="book in availableBooks" ng-class="{'info': book.owned}">
+              <td>{{book.item.volumeInfo.title}}</td>
+              <td>{{book.item.volumeInfo.authors.join(', ')}}</td>
+              <td>{{book.item.volumeInfo.publishedDate}}</td>
+              <td><button type="button" class="btn btn-default btn-sm" ng-click="add(book)" ng-hide="book.owned">Add to library</button></td>
+            </tr>
+          </table>
+
+          <button type="button" class="btn btn-default btn-sm" ng-click="previousPage()" ng-show"page !== 1">Previous</button>
+          <span>{{page}}</span>
+          <button type="button" class="btn btn-default btn-sm" ng-click="nextPage()">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
