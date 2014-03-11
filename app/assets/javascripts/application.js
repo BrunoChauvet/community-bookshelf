@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require turbolinks
+//= require jquery.min
 //= require bootstrap.min
 //= require firebase
 //= require angular.min
