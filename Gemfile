@@ -13,3 +13,5 @@ gem 'googlebooks'
 group :development, :test do
   gem 'rspec'
 end
+
+gem 'rails_12factor', group: :production
