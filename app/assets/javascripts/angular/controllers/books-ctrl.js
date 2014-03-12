@@ -30,6 +30,10 @@ app.controller('BooksCtrl', ['$scope', '$rootScope', '$http', 'BooksService', fu
     BooksService.add(book);
   }
 
+  $scope.remove = function(book) {
+    BooksService.remove(book);
+  }
+
   $scope.cancel = function() {
     $scope.search = false;
   }

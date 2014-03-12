@@ -9,4 +9,8 @@ app.service('BooksService', ['$rootScope', '$firebase', function($rootScope, $fi
     booksRef.$child($rootScope.user.id).$add(book);
   };
 
+  this.remove = function(book) {
+    booksRef.$child($rootScope.user.id).$child(book.$id).$remove();
+  };
+
 }]);
